@@ -19,7 +19,8 @@ formats:
    - epub
 
 # Use experimental 20.04-based docker container
-build: testing
+build:
+  image: testing
 
 # Optionally set the version of Python and requirements required to build your docs
 python:
