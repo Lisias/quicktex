@@ -1,10 +1,11 @@
 Welcome to Quicktex's documentation!
-========================================
+====================================
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   reference/index.rst
+    handbook/index
+    reference/index
 
 
 Indices and tables

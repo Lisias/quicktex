@@ -127,8 +127,16 @@ setup(
     include_package_data=True,
     install_requires=["Pillow", "click"],
     extras_require={
-        "tests": ["nose", "parameterized"],
-        "docs": ["sphinx", "myst-parser", "sphinx-rtd-theme"],
+        "tests": [
+            "nose",
+            "parameterized"
+        ],
+        "docs": [
+            "sphinx",
+            "myst-parser",
+            "sphinx-rtd-theme",
+            "sphinx-click"
+        ],
         "stubs": ["pybind11-stubgen"],
     },
     entry_points={

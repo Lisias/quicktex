@@ -28,6 +28,7 @@ author = 'Andrew Cassidy'
 # ones.
 extensions = [
     'myst_parser',
+    'sphinx_click',
     'sphinx_rtd_theme',
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
