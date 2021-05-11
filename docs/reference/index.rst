@@ -2,9 +2,9 @@ Reference
 =========
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
-    conversion.rst
-    dds.rst
-    image_utils.rst
-    formats/index.rst
+    quicktex
+    image_utils
+    dds
+    s3tc/index

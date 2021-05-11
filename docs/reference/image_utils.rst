@@ -1,5 +1,5 @@
-image_utils module
-==================
+quicktex.image_utils module
+===========================
 
 .. automodule:: quicktex.image_utils
     :members:

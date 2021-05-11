@@ -7,3 +7,7 @@ All notable changes to this project will be documented in this file
 ### Added
 
 - begin publishing to PyPI
+
+### Changed
+
+- Reworked docs

@@ -57,11 +57,12 @@ html_static_path = ['_static']
 
 add_module_names = False
 autodoc_docstring_signature = True
+autoclass_content = 'both'
 
 autodoc_default_options = {
-    'member-order': 'bysource',
+    'member-order': 'groupwise',
     'exclude-members': '__weakref__',
-    'imported-members': True,
+    'undoc-members': True,
 }
 
 # -- Options for Intersphinx ------------------------------------------------

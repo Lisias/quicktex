@@ -71,7 +71,7 @@ void InitBC1(py::module_ &s3tc) {
                 block.selectors = selectors
     )doc");
     bc1_block.def_property_readonly("is_3color", &BC1Block::Is3Color, R"doc(
-        "True if the block uses 3-color interpolation, i.e. color0 <= color1. This value should be ignored when decoding as part of a BC3 block. Readonly.
+        True if the block uses 3-color interpolation, i.e. color0 <= color1. This value should be ignored when decoding as part of a BC3 block. Readonly.
     )doc");
     // endregion
 
