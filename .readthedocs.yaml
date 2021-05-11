@@ -18,6 +18,9 @@ formats:
    - pdf
    - epub
 
+# Use experimental 20.04-based docker container
+build: testing
+
 # Optionally set the version of Python and requirements required to build your docs
 python:
    version: 3.8
