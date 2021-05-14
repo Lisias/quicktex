@@ -1,13 +1,14 @@
-Changelog
+# Changelog
 
 All notable changes to this project will be documented in this file
 
-## Unreleased
+## 0.1.0 - 2021-05-10
 
 ### Added
 
-- begin publishing to PyPI
+- Began publishing to PyPI
 
 ### Changed
 
-- Reworked docs
+- Rewrote CI workflow to include ManyLinux2014 builds
+- Reverted project to C++17 for better compiler compatibility
