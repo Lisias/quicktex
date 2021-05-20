@@ -56,13 +56,25 @@ class Matrix4x4 {
     friend Matrix4x4 operator*(const Matrix4x4 &lhs, const Matrix4x4 &rhs);
     friend Vector4 operator*(const Matrix4x4 &lhs, const Vector4 &rhs);
 
-    friend Matrix4x4 operator+(const Matrix4x4 &lhs, const Matrix4x4 &rhs) { return DoOp(lhs, rhs, std::plus()); }
-    friend Matrix4x4 operator-(const Matrix4x4 &lhs, const Matrix4x4 &rhs) { return DoOp(lhs, rhs, std::minus()); }
+    friend Matrix4x4 operator+(const Matrix4x4 &lhs, const Matrix4x4 &rhs) {
+        return DoOp(lhs, rhs, [](Vector4 a, Vector4 b) { return a + b; });
+    }
+    friend Matrix4x4 operator-(const Matrix4x4 &lhs, const Matrix4x4 &rhs) {
+        return DoOp(lhs, rhs, [](Vector4 a, Vector4 b) { return a - b; });
+    }
 
-    friend Matrix4x4 operator+(const Matrix4x4 &lhs, const float &rhs) { return DoOp(lhs, rhs, std::plus()); }
-    friend Matrix4x4 operator-(const Matrix4x4 &lhs, const float &rhs) { return DoOp(lhs, rhs, std::minus()); }
-    friend Matrix4x4 operator*(const Matrix4x4 &lhs, const float &rhs) { return DoOp(lhs, rhs, std::multiplies()); }
-    friend Matrix4x4 operator/(const Matrix4x4 &lhs, const float &rhs) { return DoOp(lhs, rhs, std::divides()); }
+    friend Matrix4x4 operator+(const Matrix4x4 &lhs, const float &rhs) {
+        return DoOp(lhs, rhs, [](Vector4 a, float b) { return a + b; });
+    }
+    friend Matrix4x4 operator-(const Matrix4x4 &lhs, const float &rhs) {
+        return DoOp(lhs, rhs, [](Vector4 a, float b) { return a - b; });
+    }
+    friend Matrix4x4 operator*(const Matrix4x4 &lhs, const float &rhs) {
+        return DoOp(lhs, rhs, [](Vector4 a, float b) { return a * b; });
+    }
+    friend Matrix4x4 operator/(const Matrix4x4 &lhs, const float &rhs) {
+        return DoOp(lhs, rhs, [](Vector4 a, float b) { return a / b; });
+    }
 
     friend Matrix4x4 &operator+=(Matrix4x4 &lhs, const Matrix4x4 &rhs) { return lhs = lhs + rhs; }
     friend Matrix4x4 &operator-=(Matrix4x4 &lhs, const Matrix4x4 &rhs) { return lhs = lhs - rhs; }
@@ -78,13 +90,13 @@ class Matrix4x4 {
     void Mirror();
 
    private:
-    template <typename Op> friend Matrix4x4 DoOp(const Matrix4x4 &lhs, const Matrix4x4 &rhs, Op f) {
+    template <typename Op> friend Matrix4x4 DoOp(const Matrix4x4 &lhs, const Matrix4x4 &rhs, Op&& f) {
         Matrix4x4 result;
         for (unsigned r = 0; r < 4; r++) { result[r] = f(lhs[r], rhs[r]); }
         return result;
     }
 
-    template <typename Op> friend Matrix4x4 DoOp(const Matrix4x4 &lhs, const float &rhs, Op f) {
+    template <typename Op> friend Matrix4x4 DoOp(const Matrix4x4 &lhs, const float &rhs, Op&& f) {
         Matrix4x4 result;
         for (unsigned r = 0; r < 4; r++) { result[r] = f(lhs[r], rhs); }
         return result;

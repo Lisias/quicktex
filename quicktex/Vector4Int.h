@@ -68,15 +68,31 @@ class Vector4Int {
 
     operator Vector4() const { return Vector4((float)_c[0], (float)_c[1], (float)_c[2], (float)_c[3]); }
 
-    friend Vector4Int operator+(const Vector4Int &lhs, const Vector4Int &rhs) { return DoOp(lhs, rhs, std::plus()); }
-    friend Vector4Int operator-(const Vector4Int &lhs, const Vector4Int &rhs) { return DoOp(lhs, rhs, std::minus()); }
-    friend Vector4Int operator*(const Vector4Int &lhs, const Vector4Int &rhs) { return DoOp(lhs, rhs, std::multiplies()); }
-    friend Vector4Int operator/(const Vector4Int &lhs, const Vector4Int &rhs) { return DoOp(lhs, rhs, std::divides()); }
+    friend Vector4Int operator+(const Vector4Int &lhs, const Vector4Int &rhs) {
+        return DoOp(lhs, rhs, [](int a, int b) { return a + b; });
+    }
+    friend Vector4Int operator-(const Vector4Int &lhs, const Vector4Int &rhs) {
+        return DoOp(lhs, rhs, [](int a, int b) { return a - b; });
+    }
+    friend Vector4Int operator*(const Vector4Int &lhs, const Vector4Int &rhs) {
+        return DoOp(lhs, rhs, [](int a, int b) { return a * b; });
+    }
+    friend Vector4Int operator/(const Vector4Int &lhs, const Vector4Int &rhs) {
+        return DoOp(lhs, rhs, [](int a, int b) { return a / b; });
+    }
 
-    friend Vector4Int operator+(const Vector4Int &lhs, const int &rhs) { return DoOp(lhs, rhs, std::plus()); }
-    friend Vector4Int operator-(const Vector4Int &lhs, const int &rhs) { return DoOp(lhs, rhs, std::minus()); }
-    friend Vector4Int operator*(const Vector4Int &lhs, const int &rhs) { return DoOp(lhs, rhs, std::multiplies()); }
-    friend Vector4Int operator/(const Vector4Int &lhs, const int &rhs) { return DoOp(lhs, rhs, std::divides()); }
+    friend Vector4Int operator+(const Vector4Int &lhs, const int &rhs) {
+        return DoOp(lhs, rhs, [](int a, int b) { return a + b; });
+    }
+    friend Vector4Int operator-(const Vector4Int &lhs, const int &rhs) {
+        return DoOp(lhs, rhs, [](int a, int b) { return a - b; });
+    }
+    friend Vector4Int operator*(const Vector4Int &lhs, const int &rhs) {
+        return DoOp(lhs, rhs, [](int a, int b) { return a * b; });
+    }
+    friend Vector4Int operator/(const Vector4Int &lhs, const int &rhs) {
+        return DoOp(lhs, rhs, [](int a, int b) { return a / b; });
+    }
 
     friend Vector4Int &operator+=(Vector4Int &lhs, const Vector4Int &rhs) { return lhs = lhs + rhs; }
     friend Vector4Int &operator-=(Vector4Int &lhs, const Vector4Int &rhs) { return lhs = lhs - rhs; }

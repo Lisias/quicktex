@@ -66,15 +66,31 @@ class Vector4 {
         return _c[index];
     }
 
-    friend Vector4 operator+(const Vector4 &lhs, const Vector4 &rhs) { return DoOp(lhs, rhs, std::plus()); }
-    friend Vector4 operator-(const Vector4 &lhs, const Vector4 &rhs) { return DoOp(lhs, rhs, std::minus()); }
-    friend Vector4 operator*(const Vector4 &lhs, const Vector4 &rhs) { return DoOp(lhs, rhs, std::multiplies()); }
-    friend Vector4 operator/(const Vector4 &lhs, const Vector4 &rhs) { return DoOp(lhs, rhs, std::divides()); }
+    friend Vector4 operator+(const Vector4 &lhs, const Vector4 &rhs) {
+        return DoOp(lhs, rhs, [](float a, float b) { return a + b; });
+    }
+    friend Vector4 operator-(const Vector4 &lhs, const Vector4 &rhs) {
+        return DoOp(lhs, rhs, [](float a, float b) { return a - b; });
+    }
+    friend Vector4 operator*(const Vector4 &lhs, const Vector4 &rhs) {
+        return DoOp(lhs, rhs, [](float a, float b) { return a * b; });
+    }
+    friend Vector4 operator/(const Vector4 &lhs, const Vector4 &rhs) {
+        return DoOp(lhs, rhs, [](float a, float b) { return a / b; });
+    }
 
-    friend Vector4 operator+(const Vector4 &lhs, const float &rhs) { return DoOp(lhs, rhs, std::plus()); }
-    friend Vector4 operator-(const Vector4 &lhs, const float &rhs) { return DoOp(lhs, rhs, std::minus()); }
-    friend Vector4 operator*(const Vector4 &lhs, const float &rhs) { return DoOp(lhs, rhs, std::multiplies()); }
-    friend Vector4 operator/(const Vector4 &lhs, const float &rhs) { return DoOp(lhs, rhs, std::divides()); }
+    friend Vector4 operator+(const Vector4 &lhs, const float &rhs) {
+        return DoOp(lhs, rhs, [](float a, float b) { return a + b; });
+    }
+    friend Vector4 operator-(const Vector4 &lhs, const float &rhs) {
+        return DoOp(lhs, rhs, [](float a, float b) { return a - b; });
+    }
+    friend Vector4 operator*(const Vector4 &lhs, const float &rhs) {
+        return DoOp(lhs, rhs, [](float a, float b) { return a * b; });
+    }
+    friend Vector4 operator/(const Vector4 &lhs, const float &rhs) {
+        return DoOp(lhs, rhs, [](float a, float b) { return a / b; });
+    }
 
     friend Vector4 &operator+=(Vector4 &lhs, const Vector4 &rhs) { return lhs = lhs + rhs; }
     friend Vector4 &operator-=(Vector4 &lhs, const Vector4 &rhs) { return lhs = lhs - rhs; }
@@ -101,18 +117,18 @@ class Vector4 {
     float SqrMag() { return Dot(*this, *this); }
 
     float Determinant2x2() {
-        //z00 * z11 - z01 * z10;
+        // z00 * z11 - z01 * z10;
         return (_c[0] * _c[3]) - (_c[1] * _c[2]);
     }
 
    private:
-    template <typename Op> static inline Vector4 DoOp(const Vector4 &lhs, const Vector4 &rhs, Op f) {
+    template <typename Op> static inline Vector4 DoOp(const Vector4 &lhs, const Vector4 &rhs, Op&& f) {
         Vector4 r;
         for (unsigned i = 0; i < 4; i++) { r[i] = f(lhs[i], rhs[i]); }
         return r;
     }
 
-    template <typename Op> static inline Vector4 DoOp(const Vector4 &lhs, const float &rhs, Op f) {
+    template <typename Op> static inline Vector4 DoOp(const Vector4 &lhs, const float &rhs, Op&& f) {
         Vector4 r;
         for (unsigned i = 0; i < 4; i++) { r[i] = f(lhs[i], rhs); }
         return r;
